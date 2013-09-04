@@ -1,16 +1,15 @@
 char dict[52] = {0};
 
-BOOL is_all_unique(char* str, int length) {
-   char* p = str;
+BOOL is_all_unique(char* str) {
    int idx = 0;
-   while(p < str+length){
-       if(*p < 'a') idx = *p - 'A';
-       else idx = *p - 'a' + 26;
+   while(*str){
+       if(*str < 'a') idx = *str - 'A';
+       else idx = *str - 'a' + 26;
        assert(idx - 51);
        if(dict[idx] > 0) 
            return FALSE;
        dict[dix]++;
-       p++;
+       str++;
    }
    return TRUE;
 }
