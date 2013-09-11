@@ -1,13 +1,19 @@
+#include <exception>
+
 class Queue {
 public:
   Queue(int cap):_capacity(cap), _head(0), _tail(0) {
-    _array = new int[cap];
+	  if(_capacity <= 0) 
+		  _capacity = 4;
+    _array = new int[_capacity];
   }
   
-  virtual ~Queue(){ delete[] _array;}
-
+  virtual ~Queue(){delete []_array;}
+  
+  bool isEmpty(){return this->size() == 0;}
+  
   int dequeue() {
-    if(size() == 0) throw new out_of_bound();
+    if(size() == 0) throw std::exception("out of bound");
     
     int ret = _array[_tail++];
     if(_tail >= _capacity) _tail = 0;
@@ -15,7 +21,7 @@ public:
   }
   
   int enqueue(int ele){
-    int size = size();
+    int size = this->size();
     if(size == _capacity - 1) {
       int *tmp = new int[_capacity*2];
       if(_head < _tail) _head += _capacity;
@@ -24,11 +30,11 @@ public:
       }
       delete []_array;
       _array = tmp;
+	  _capacity *= 2; // increase capacity
     }
-    
-    _array[head++] = ele;
-    if(_head > _capacity) _head = 0;
-    return TRUE;
+    if(_head >= _capacity) _head = 0;
+    _array[_head++] = ele;
+    return true;
   }
   
   int size() {
