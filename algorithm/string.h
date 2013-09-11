@@ -29,7 +29,7 @@ int levenshtein_distance(char* s, int len_s, char *t, int len_t) {
           d[(i  - 1) * len_s + j - 1] + 1  /* 替换 */
         );
         
-  return d[len_s * len_t  - 1];
+  return d[(len_s + 1) * (len_t + 1)  - 1];
 }
 
 #endif
