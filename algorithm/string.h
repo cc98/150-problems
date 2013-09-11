@@ -35,7 +35,7 @@ int levenshtein_distance(char* s, int len_s, char *t, int len_t) {
 }
 
 /**
- * improve algorithm, with only two rows( O(n * m) space )
+ * improve algorithm, with only two rows( O(m) space )
  */
 int levenshtein_distance2(char* s, int len_s, char *t, int len_t) {
   int *v0, *v1;
